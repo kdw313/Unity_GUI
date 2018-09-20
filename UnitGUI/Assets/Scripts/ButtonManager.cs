@@ -18,10 +18,9 @@ public class ButtonManager : MonoBehaviour
         if (button != null)
         {
             Debug.Log(button + "Clickced");
-            button.GetComponent<Image>().color = new Color32(11, 121, 222, 255);
+            button.GetComponent<Image>().color = new Color32(20, 120, 220, 255);
+            // TODO: Activate the item
         }
-            
-
     }
 
 }
