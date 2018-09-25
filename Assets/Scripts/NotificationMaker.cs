@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Notification maker.
+/// Author: Shawn Kim
+/// Created Date: 2018-09-25
+/// Last Modified: 2018-09-25
+/// </summary>
 public class NotificationMaker : MonoBehaviour {
 
     [SerializeField]
@@ -99,7 +105,10 @@ public class NotificationMaker : MonoBehaviour {
                                                  msg);
     }
 
-
+    /// <summary>
+    /// Ises the animator playing.
+    /// </summary>
+    /// <returns><c>true</c>, if animator playing was ised, <c>false</c> otherwise.</returns>
     bool IsAnimatorPlaying()
     {
         return notificationBarAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1;

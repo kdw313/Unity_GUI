@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Date updater.
+/// Author: Shawn Kim
+/// Created Date: 2018-09-19
+/// Last Modified: 2018-09-19
+/// </summary>
 public class Date : MonoBehaviour
 {
     private System.DateTime curDate;
 
     [SerializeField]
     public Text date;
+
     [SerializeField]
     public Text time;
+
 
     void Start()
     {
         UpdateGUIDateTime(System.DateTime.Now);
         StartCoroutine(OnPerMin());
     }
+
 
     /// <summary>
     /// Coroutine function that check the time call update every 0.5 sec
@@ -43,6 +52,7 @@ public class Date : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.5f);
         }
     }
+
 
     /// <summary>
     /// Updates the GUI's Date and time.
