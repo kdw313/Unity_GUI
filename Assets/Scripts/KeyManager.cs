@@ -3,44 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KeyManager : MonoBehaviour {
+    
+    [SerializeField]
+    public ItemMaker itemMaker;
 
     [SerializeField]
-    public GameObject item;
-    
-    public static int numberOfItems;
-
+    public NotificationMaker notificationMaker;
 
     // timer to make a delay
     public float timestamp = 0f;
     public float delay = 0.2f;
 
+
 	// Use this for initialization
-	void Start () {
-        numberOfItems = 0;
+	void Awake () {
+        if(itemMaker == null)
+            itemMaker = GameObject.Find("Content").GetComponent<ItemMaker>();
+
+        if(notificationMaker == null)
+            notificationMaker = GameObject.Find("CanvasNotification").GetComponent<NotificationMaker>();
+        
 	}
 
     void Update()
     {
         if(Time.time >= timestamp)
         {
-            // TODO: Add item to the list
             if (Input.GetKey(KeyCode.Q)) 
             {
-                AddToList();
+                itemMaker.AddToList();
                 timestamp = Time.time + delay;
             }
 
-            // TODO: Notification normal
             if (Input.GetKey(KeyCode.A))
             {
-
+                notificationMaker.NotifyFromBottom(0);
                 timestamp = Time.time + delay;
             }
 
-            // TODO: Notification warning
             if (Input.GetKey(KeyCode.S))
             {
-
+                notificationMaker.NotifyFromBottom(1);
                 timestamp = Time.time + delay;
             }
         }
@@ -48,20 +51,5 @@ public class KeyManager : MonoBehaviour {
     }
 
 
-    void AddToList()
-    {
-        GameObject newItem;
-
-        newItem = (GameObject)Instantiate(item, transform);
-        numberOfItems++;
-
-    }
-
-
-    void NotifyFromBottom(int id)
-    {
-        // TODO: Determine the id of notificaiton and call the notification
-
-    }
 
 }
