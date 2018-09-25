@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NotificationMaker : MonoBehaviour {
-    
+
     [SerializeField]
-    private RectTransform notificationBar;
+    private Animator notificationBarAnimator;
 
     [SerializeField]
     private Image notificationImageBG;
@@ -30,15 +30,15 @@ public class NotificationMaker : MonoBehaviour {
 
     private void Start()
     {
-        coroutine = FromBottomToTop();
+        //coroutine = FromBottomToTop();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (IsAnimatorPlaying())
         {
-            StopCoroutine(coroutine);
-        }
+            notificationBarAnimator.SetBool("Up", false);
+        } 
     }
 
     /// <summary>
@@ -47,20 +47,21 @@ public class NotificationMaker : MonoBehaviour {
     /// <param name="id">Identifier (1: informing, 2: warning).</param>
     void NotifyFromBottom(short id)
     {
+
         switch(id)
         {
             case 1:
                 ChangeBGColor(10, 200, 10);
                 ChangeText("Hello World", "This is Notificaiton");
                 notificationImageIcon.sprite = info;
-                StartCoroutine(coroutine);
+                notificationBarAnimator.SetBool("Up", true);
             break;
 
             case 2:
                 ChangeBGColor(200, 10, 10);
                 ChangeText("Hello World", "This is Warning");
                 notificationImageIcon.sprite = warning;
-                StartCoroutine(coroutine);
+                notificationBarAnimator.SetBool("Up", true);
             break;
 
             default:
@@ -99,19 +100,8 @@ public class NotificationMaker : MonoBehaviour {
     }
 
 
-    /// <summary>
-    /// Coroutine function that check the time call update every 0.5 sec
-    /// </summary>
-    /// <returns>The per minimum.</returns>
-    private IEnumerator FromBottomToTop()
+    bool IsAnimatorPlaying()
     {
-        while(true)
-        {
-            notificationBar.localPosition += Vector3.up;    
-
-            // every 0.5 second
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-
+        return notificationBarAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1;
     }
 }
