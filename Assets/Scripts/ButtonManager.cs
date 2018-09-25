@@ -4,14 +4,10 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    public Color newColor = new Color32(0, 0, 0, 255);
-
-    public void OnClick()
+    private void OnClick()
     {
         Button button = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
 
-
-        Debug.Log(button + "Clickced");
 
         if (button != null)
         {

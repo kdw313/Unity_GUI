@@ -16,7 +16,6 @@ public class Date : MonoBehaviour
     {
         UpdateGUIDateTime(System.DateTime.Now);
         StartCoroutine(OnPerMin());
-
     }
 
     /// <summary>
@@ -34,7 +33,7 @@ public class Date : MonoBehaviour
             // if one minute is passed
             if((curDate.Second % 60) == 0)
             {
-                Debug.Log("one minute passed: " + curDate);
+                //Debug.Log("one minute passed: " + curDate);
 
                 UpdateGUIDateTime(curDate);
             }

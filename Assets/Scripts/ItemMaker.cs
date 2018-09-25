@@ -12,7 +12,7 @@ public class ItemMaker : MonoBehaviour {
     /// <summary>
     /// Adds a item to list.
     /// </summary>
-    public void AddToList()
+    private void AddToList()
     {
         GameObject newItem;
 
